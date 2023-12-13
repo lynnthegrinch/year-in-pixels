@@ -7,4 +7,4 @@
   Anyways I havent been coding for a long time so even finishing it, it's a huge step forward for me!<br>
   Now since it's 4 am i'll head to bed!<br>
   Happy coding! -Valentina Lynn (@amygdala_lynn on discord!)
-</article>
+</article> project demo: <a href="https://a-record-of-lynn-who-am-i.neocities.org"> link to neocities! </a>
