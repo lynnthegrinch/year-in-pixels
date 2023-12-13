@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+	  <link rel="stylesheet" href="styles.css">
+	  <title> Year in pixels </title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Delius+Unicase&display=swap" rel="stylesheet">
+	  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-brands/css/uicons-brands.css'>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="description" content="your mood tracker in pixels">
+	  <meta charset="utf-8">
+	  <meta name="author" content="Valentina Conte">
+</head>
+
+<body class="body">
+	<div class="pyro">
+         <div class="before"></div>
+         <div class="after"></div>
+         </div>
+	<div id="outerbox">
+		<h1 class="title">Year in pixels</h1>
+        <div id="guide">
+        <div id="moods"></div>
+        <div id="selectedMood">Today I'm feeling: <span></span></div>
+        </div>
+        <div class="content">
+        <div id="daysHeader"></div>
+        <div id="tableContainer">
+        <div id="monthHeader"></div>
+        <div id="yearContainer"></div>
+        </div>
+        </div>
+		<script>
+			const COLORS = {
+  0: { code: "#0a1538", label: "😃" },
+  1: { code: "#ffa600", label: "😊" },
+  2: { code: "#2eb6b0", label: "😐" },
+  3: { code: "#582bc2", label: "😞" },
+  4: { code: "#412f85", label: "😭" }
+};
+
+const YEAR_CONTAINER = document.getElementById("yearContainer");
+const DAYS_HEADER = document.getElementById("daysHeader");
+const MONTH_HEADER = document.getElementById("monthHeader");
+const GUIDES = document.getElementById("guide");
+const SELECTED_MOOD = document.querySelector("#selectedMood span");
+const MOODS = document.getElementById("moods");
+const MONTH_LETTERS = [
+  "J",
+  "F",
+  "M",
+  "A",
+  "M",
+  "J",
+  "J",
+  "A",
+  "S",
+  "O",
+  "N",
+  "D"
+];
+
+let selectedMood = null;
+
+let init = () => {
+  checkLocalStorage();
+  generateVisualStructure();
+  setMoods();
+};
+
+let setMoods = () => {
+  let colorKeys = Object.keys(COLORS);
+
+  colorKeys.forEach(e => {
+    let mood = document.createElement("div");
+    let color = document.createElement("span");
+
+    color.style.background = getGradient(COLORS[e].code);
+
+    mood.setAttribute("mood", e);
+    color.setAttribute("mood", e);
+
+    mood.textContent += COLORS[e].label;
+    mood.appendChild(color);
+
+    MOODS.appendChild(mood);
+  });
+};
+
+let checkLocalStorage = () => {
+  if (window.localStorage.structure === undefined) {
+    let structure = generateDataStructure();
+    localStorage.setItem("structure", JSON.stringify(structure));
+  }
+};
+
+let generateDataStructure = () => {
+  let data = {};
+
+  for (let i = 0; i < 12; i++) {
+    data[i] = Array.from({ length: getDaysFromMonth(i + 1) }, () => null);
+  }
+
+  return data;
+};
+
+let generateVisualStructure = () => {
+  const data = getCurrentLSStructure();
+  const months = Object.keys(data);
+  const dayHeaderLength = 31;
+
+  let monthHeaderSet = false;
+
+  for (let day = 1; day <= dayHeaderLength; day++) {
+    let dayHeader = document.createElement("div");
+    dayHeader.className = "dayHeader";
+    dayHeader.textContent = day;
+
+    DAYS_HEADER.appendChild(dayHeader);
+  }
+
+  months.forEach(month => {
+    let monthContainer = document.createElement("div");
+    monthContainer.className = "monthContainer";
+    let monthHeader = document.createElement("div");
+    monthHeader.className = "monthHeader";
+    monthHeader.textContent = MONTH_LETTERS[month];
+
+    let days = Object.keys(data[month]);
+
+    days.forEach(day => {
+      let dayContainer = document.createElement("div");
+      dayContainer.className = "dayContainer";
+      dayContainer.onclick = () => {
+        assignMood(month, day, dayContainer);
+      };
+
+      if (data[month][day])
+        dayContainer.style.background = getGradient(
+          COLORS[data[month][day]].code
+        );
+
+      monthContainer.appendChild(dayContainer);
+    });
+
+    MONTH_HEADER.appendChild(monthHeader);
+    YEAR_CONTAINER.appendChild(monthContainer);
+  });
+};
+
+let assignMood = (month, day, item) => {
+  let data = getCurrentLSStructure();
+  data[month][day] = selectedMood;
+
+  if (selectedMood)
+    item.style.background = getGradient(COLORS[selectedMood].code);
+
+  localStorage.setItem("structure", JSON.stringify(data));
+};
+
+let getDaysFromMonth = month => new Date(2023, month, 0).getDate();
+let getCurrentLSStructure = () => JSON.parse(window.localStorage.structure);
+let getGradient = colorId =>
+  `radial-gradient(ellipse at center, rgba(255,255,255,.1) -95%, ${colorId} 100%)`;
+
+GUIDES.addEventListener("click", e => {
+  if (e.target.attributes[0].value) {
+    selectedMood = e.target.attributes[0].value;
+    SELECTED_MOOD.style.background = getGradient(COLORS[selectedMood].code);
+  }
+});
+
+init();
+</script>
+	     <article> <h2>Instructions:</h2>
+		  <p>Pick your mood by clicking on the color!<br> 
+			 -click on the corrispanding day on the grid.<br> 
+			 -At the end of the year you will have a visual representation of your mood all throught it.</p>
+		 </article>
+	     <footer>
+			<p>Created by: Valentina Lynn. (@amygdala_lynn on discord) For: hackatron 2023.<br>
+			Find me on: twitter <a href="https://twitter.com/Mereoleonasluvr" title="twitter"><i class="fi fi-brands-twitter"></i></a>
+			codedex <a href="https://www.codedex.io/@ValentinaLynn" title="codedex"><i class="fi fi-rr-square-terminal"></i></a>,
+			github <a href="https://github.com/lynnthegrinch" title="github"><i class="fi fi-brands-github"></i></a>,
+			tumblr. <a href="lynnlovesthestars.tumblr.com" title="tumblr"> <i class="fi fi-brands-tumblr"></i></a> <br>
+		  (though open tumblr at your own risk)
+		   Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
+		</footer>
+    </div>
+</body>
+</html>
+<!-- rgba(85, 129, 189, 1.0)
+rgba(93, 85, 189, 1.0)
+rgba(145, 85, 189, 1.0)-->
