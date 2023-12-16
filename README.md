@@ -1,6 +1,6 @@
 # Year in Pixels
 
-A fun mood tracker.
+> A fun daily mood tracker for 2024!
 
 Hi, this is Valentina here. For my first hackatron I decided to build a year in pixel tracked.
 
