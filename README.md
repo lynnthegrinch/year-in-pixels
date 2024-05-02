@@ -3,6 +3,8 @@
 
 it's been 5 months and i sat down to finish this, it's a bit different design wise but it works just the same<3
 
+## original
+
 > A fun daily mood tracker for 2024!
 
 Hi, this is Valentina here. For my first hackatron I decided to build a year in pixel tracked.
