@@ -1,4 +1,7 @@
 # Year in Pixels
+## update may 2nd, 2024.
+
+it's been 5 months and i sat down to finish this, it's a bit different design wise but it works just the same<3
 
 > A fun daily mood tracker for 2024!
 
