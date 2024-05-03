@@ -79,13 +79,11 @@
 	      margin: 0;
 	      text-shadow: 1px 3px 1px azure;
 	  }
-	  #guide {
+	  	  #guide {
           display: flex;
           font-weight: bold;
-          text-align: center; 
+          margin: 1em 0;
             justify-content: center;
-  align-items: center;
-          flex-flow: row;
 
       &:hover {
           cursor: pointer;
@@ -100,37 +98,41 @@
    }
   }
  }
+          
+#moods {
+    display: flex;
+    
+          
+  div {
+    position: relative;
+    margin: 0 1em;
+    padding-left: 1.25em;
+          
+    span {
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      width: 1em;
+      height: 1em;
+    }
+    }
+          }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+ 
+  align-items: center;
+}
+
          ol, footer {
 	    width: 600px;
 	    list-style: none;
 	    text-align: center;
 	    align-self: center;
 	  } 
-#moods {
-    display: flex;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-          
-  div {
-    position: absolute;
-    margin: 0 1em;
-    padding-left: 1.25em;
-          }
-    span {
-      top: 0.25em;
-      width: 1em;
-      height: 1em;
-    }
-          }
 
-.content {
-  display: inline-flex;
-  flex-direction: column;
-  text-align: center;
-  position: relative;
-  align-items: center;
-}
 
 #yearContainer,
 #monthHeader,
