@@ -29,10 +29,11 @@
     } 
 	  /*corpo*/
 	  html{
-	   background: rgb(0,0,0);
+       background: rgb(0,0,0);
        background-image: url(https://wallpaper.dog/large/20483557.jpg);
        background-attachment: fixed;
-       background-size: contain; 
+       background-size: cover; 
+       background-position: center;
        font-family: 'Delius Unicase', cursive;
        user-select: none;
        width: 900px;
@@ -227,11 +228,13 @@ flex-direction: column;
   }
   ol, footer {
 	    width: 600px;
+	    list-style: none;
 	  }
 }
 /*fine tracker*/
 .pyro > .before, .pyro > .after {
   position: absolute;
+overflow: hidden;
   width: 5px;
   height: 5px;
   border-radius: 50%;
