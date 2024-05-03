@@ -20,4 +20,4 @@ Now since it's 4 am i'll head to bed!
   
 Happy coding! - Valentina Lynn (@amygdala_lynn on discord!)
 
-project demo: <a href="[https://yearinpixels.neocities.org/]"> link to neocities! </a>
+project demo: <a href="https://yearinpixels.neocities.org/"> link to neocities! </a>
