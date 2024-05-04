@@ -28,47 +28,36 @@
     	color: #412f85;
     } 
 	  /*corpo*/
-	  html{
-       background: rgb(0,0,0);
+	body {
+	     background: rgb(0,0,0);
        background-image: url(https://wallpaper.dog/large/20483557.jpg);
        background-attachment: fixed;
-       background-size: cover; 
-       background-position: center;
+       background-size: cover;
+       Background-position: center; 
        font-family: 'Delius Unicase', cursive;
        user-select: none;
        width: 900px;
-       display: grid;
-       grid-template-columns: repeat(8, 1fr);
-       grid-template-rows: repeat(6, 1fr);
-       grid-column-gap: 0px;
-       grid-row-gap: 0px;
-       margin: 0px;
+       display: flex;
+       padding-top: 50px;
        height: 100%;
        margin:0 auto ;
-       grid-template-areas: 
-	". . . . . . . ."
-	". . d d d d . ."
-	". . d d d d . ."
-	". . d d d d . ."
-	". . d d d d . ."
-	". . . . . . . .";
+       
 	  }
 	  
 	  #outerbox {
+	    
         display: flex;
         flex-flow: column;
-	    justify-content: center;
-	    align-content: center;
-	    text-align: center;
-	    background-color: rgba(209, 22, 210, 0.7);
+	      justify-content: center;
+	      align-content: center;
+	      text-align: center;
+	      background-color: rgba(209, 22, 210, 0.7);
         border-style: solid;
         border-color: azure;
-        position: fixed;
-        grid-area: d;
-        place-content: center;
-        margin-bottom: 0;
-          max-width: 100%;
-        height: 100%;
+        margin-top: 10px;
+        max-width: 70%;
+        height: 50%;
+        user-select: none;
 	  }
 	  ol, footer, #conte, #outerbox {
 	    text-align: center;
